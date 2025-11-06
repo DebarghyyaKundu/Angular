@@ -5,6 +5,13 @@ Eg. <li *ngFor="let appointment of appointments; index as i">
 Prints the names of all appointments in a <li>
 
 
+ngSubmit - 
+Used to get the submit event in forms. The function linked with ngSubmit is called when a form is submitted
+Eg: <form (ngSubmit)="onSubmit()">
+        ...
+    </form>
+
+
 ngOnInit - 
 This is a lifecycle hook in Angular that is called when the application is initialized for the first time.
 To use ngOnInit function, we need to first import 'OnInit' interface in the component and then implement it on the component class 

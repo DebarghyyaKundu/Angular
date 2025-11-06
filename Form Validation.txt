@@ -1,0 +1,31 @@
+Angular supports two types of Form Validations:
+
+1. Reactive Form Validations - 
+Validation is done by accessing the form fields in the component file.
+
+Steps: 
+i. In the template you need to declare a form holding formGroup.
+This reservationForm variable is actually an instance of 'FormGroup' that has been created in the corresponding component class.
+Eg: <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()"> ... </form>
+
+ii. The formControlName attribute is very important for each of the inputs. It is required to access those input fields in the 
+reservation-form component so that reactive validation can be done to these fields.
+
+iii. The formBuilder instance needs to be added in the constructor of the component so that it is accessible when the component is initialized.
+Angular dependency injection provides us with the object of the formBuilder if we add it in the constructor directly. 
+We donot need to create an object and maintain it manually.
+Eg: constructor(private formBuilder: FormBuilder) {}
+
+iv. In the component class we need to add validation the input fields. Since this needs to happen as soon as the component is initialized,
+the validation logic is added in ngOnInit function.
+Eg:   ngOnInit() {
+        this.reservationForm = this.formBuilder.group({
+        checkInDate: ['', Validators.required],
+        guestEmail: ['', [Validators.required, Validators.email]],
+        ...
+        });
+    }
+The key names of the formBuilder.group has to exactly match the formControlName in the HTML template so that Angular can link them.
+
+2. Template Driven Form Validation - 
+Validation is done directly in html template.
