@@ -1,0 +1,17 @@
+ngFor - 
+Eg. <li *ngFor="let appointment of appointments; index as i"> 
+        {{ appointment.name }}
+    </li>
+Prints the names of all appointments in a <li>
+
+
+ngOnInit - 
+This is a lifecycle hook in Angular that is called when the application is initialized for the first time.
+To use ngOnInit function, we need to first import 'OnInit' interface in the component and then implement it on the component class 
+using implements keyword.
+Eg. export class AppointmentListComponent implements OnInit {
+    ngOnInit(): void {
+        // Logic here
+    }
+}
+This is similar to the concept of useEffect with empty dependency array.
