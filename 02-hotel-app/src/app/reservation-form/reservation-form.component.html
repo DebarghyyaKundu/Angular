@@ -1,1 +1,47 @@
-<p>reservation-form works!</p>
+<!-- formControlName is required to access those input fields in the reservation-form component so that reactive validation
+ can be done on these fields -->
+
+<form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label>Check-in Date:</label>
+        <input type="date" formControlName="checkInDate">
+        <div *ngIf="reservationForm.get('checkInDate')?.invalid && reservationForm.get('checkInDate')?.touched">
+            Check-in Date is invalid!!
+        </div>
+    </div>
+
+    <div>
+        <label>Check-out Date:</label>
+        <input type="date" formControlName="checkOutDate">
+        <div *ngIf="reservationForm.get('checkOutDate')?.invalid && reservationForm.get('checkOutDate')?.touched">
+            Check-out Date is invalid!!
+        </div>
+    </div>
+
+    <div>
+        <label>Guest Name:</label>
+        <input type="text" formControlName="guestName">
+        <div *ngIf="reservationForm.get('guestName')?.invalid && reservationForm.get('guestName')?.touched">
+            Guest Name is invalid!!
+        </div>
+    </div>
+
+    <div>
+        <label>Guest Email:</label>
+        <input type="email" formControlName="guestEmail">
+        <div *ngIf="reservationForm.get('guestEmail')?.invalid && reservationForm.get('guestEmail')?.touched">
+            Guest Email is invalid!!
+        </div>
+    </div>
+
+    <div>
+        <label>RoomNumber:</label>
+        <input type="number" formControlName="roomNumber">
+        <div *ngIf="reservationForm.get('roomNumber')?.invalid && reservationForm.get('roomNumber')?.touched">
+            Room Number is invalid!!
+        </div>
+    </div>
+
+    <!-- Disable the button if the form data isnt valid -->
+    <button type="submit" [disabled]="reservationForm.invalid">Submit</button>
+</form>
