@@ -1,0 +1,13 @@
+One-way Data Binding - 
+When we create a variable inside the component (ts class) and use that variable to display a value on the html file using 
+string interpolation, it is known as one-way data binding. 
+Here the value of shown on the webpage is same as the value of the variable
+in the component.
+Eg: {{ var1 }}
+
+Two-way Data Binding - 
+In case of a form, we need to link the form input fields such that the form input is linked to the component variable as well as
+the component variable value can be updated when we update the input field in the form directly. This is called two-way data binding.
+Eg: [(ngModel)]="val1"
+We define val1 in the component file. Now whenever the val1 value is updated from the html file, it can be accessed in the component 
+ts file as well.
