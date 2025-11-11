@@ -36,11 +36,12 @@ export class ReservationFormComponent implements OnInit {
     
     // Check if id is present as url parameter in edit route. If present, fetch reservation details by id.
     if(id) {
-      let reservation = this.reservationService.getReservationById(id);
-      if(reservation) {
-        // Populate the reservation form with existing reservation details by id
-        this.reservationForm.patchValue(reservation);
-      }
+      this.reservationService.getReservationById(id).subscribe(res => {
+        if(res) {
+          // Populate the reservation form with existing reservation details by id
+          this.reservationForm.patchValue(res);
+        }
+      });
     }
   }
 
@@ -52,11 +53,15 @@ export class ReservationFormComponent implements OnInit {
       // Check if id is present as url parameter in edit route. If present, fetch reservation details by id.
       if(id) {
         // Update
-        this.reservationService.updateReservation(id, reservation);
+        this.reservationService.updateReservation(id, reservation).subscribe(() => {
+          console.log("Reservation updated successfully!");
+        });
       }
       else {
         // Add
-        this.reservationService.addReservation(reservation);
+        this.reservationService.addReservation(reservation).subscribe(() => {
+          console.log("Reservation added successfully!");
+        });
       }
 
       // Navigate to the reservation list view after successful submission
