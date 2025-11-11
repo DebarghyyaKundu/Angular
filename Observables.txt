@@ -1,0 +1,23 @@
+Observables in Angular are a way to handle asynchronous data streams. They are provided by the RxJS library and are 
+commonly used for handling HTTP requests, user input events, and more.
+
+In Angular, observables are often used with services like HttpClient to fetch data asynchronously.
+
+Eg: If we have a API that is being called using HttpClient library. We would call the API using an instance of HttpClient and the 
+respectie Http verb (GET/POST/PUT/DELETE) and value returned would be of type 'Observable'. 
+We can then subscribe the Observable to get the value once the async operations is complete using callbacks. 
+
+Observable concept is similar to how Promises work in JS.
+
+import { Observable } from 'rxjs';
+
+// Calling Observable
+getValue(): Observable<MyClass> {
+    return httpClient.get<MyClass>('api_url');
+}
+
+// Subscribe to the observable
+getValue().subscribe(res => console.log(res));
+
+// Output:
+sample object
