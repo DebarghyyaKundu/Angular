@@ -1,0 +1,11 @@
+In angular to separate environments and to use environment specific config/constant file we use the command : 
+ng generate environments OR ng g environments
+
+This is important because in this file we can store all the configs and constants that are going to be used throughout the project.
+
+This creates a folder environments in our project along with 2 files: environment.development.ts & environment.ts
+The development.ts is used for storing development environment related constants and configs while the environment.ts is used for prod.
+
+By default angular would pickup the production config file, so we manually need to run ng serve --configuration=development
+to tell angular to pick the environment.development.ts file instead.
+
