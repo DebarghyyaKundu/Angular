@@ -9,19 +9,24 @@ import { Product } from '../model/product';
 })
 export class CartService {
 
-  private url = environment.baseUrl + "/cart"
+  private cartUrl = environment.baseUrl + "/cart";
+    private checkoutUrl = environment.baseUrl + "/checkout";
 
   constructor(private httpClient: HttpClient) {}
 
   addToCart(product: Product): Observable<Product> {
-    return this.httpClient.post<Product>(this.url, product);
+    return this.httpClient.post<Product>(this.cartUrl, product);
   }
 
   getCartItems(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(this.url);
+    return this.httpClient.get<Product[]>(this.cartUrl);
   }
 
   clearCart(): Observable<void> {
-    return this.httpClient.delete<void>(this.url);
+    return this.httpClient.delete<void>(this.cartUrl);
+  }
+
+  checkout(cartItems: Product[]): Observable<void> {
+    return this.httpClient.post<void>(this.checkoutUrl, cartItems);
   }
 }

@@ -35,4 +35,10 @@ export class CartViewComponent implements OnInit{
       console.log("Cart cleared successfully");
     });
   }
+
+  checkout(): void {
+    this.cartService.checkout(this.cartItems).subscribe(() => {
+      console.log("Cart checkout successful");
+    });
+  }
 }
