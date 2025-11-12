@@ -1,3 +1,21 @@
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 110px;
+}
+
 .product-card {
     max-width: 150px;
+}
+
+mat-card:hover {
+    /* Increases size of card to 1.1x on hover */
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+mat-card {
+    /* Adds a animation/transition effect that takes 0.2s */
+    transition: transform 0.2s;
 }
