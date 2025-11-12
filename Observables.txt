@@ -21,3 +21,30 @@ getValue().subscribe(res => console.log(res));
 
 // Output:
 sample object
+
+
+/**
+ * This function demonstrates the use of Observables in RxJS.
+ * Observables are used to handle asynchronous data streams.
+ * The `next()` method is called to emit new values to subscribers.
+ * 
+ * Example:
+ * 
+ * const observable = new Observable(observer => {
+ *   observer.next('Hello');
+ *   observer.next('World');
+ *   observer.complete();
+ * });
+ * 
+ * observable.subscribe({
+ *   next: value => console.log(value),
+ *   complete: () => console.log('Done')
+ * });
+ * 
+ * // Output:
+ * // Hello
+ * // World
+ * // Done
+ * 
+ * Note: Observables can emit multiple values over time, and subscribers react to these emissions.
+ */
