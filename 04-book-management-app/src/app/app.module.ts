@@ -7,6 +7,8 @@ import { StoreModule } from '@ngrx/store';
 import { BookReducer } from './books/book.reducer';
 import { BookListComponent } from './book-list/book-list.component';
 import { AppState } from './app.state';
+import { EffectsModule } from '@ngrx/effects';
+import { BookEffects } from './books/books.effects';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { AppState } from './app.state';
     BrowserModule,
     AppRoutingModule,
     // Using this we ask our application to register the StoreModule and use BookReducer to manage the state named 'book'.
-    StoreModule.forRoot<AppState>({book: BookReducer})
+    StoreModule.forRoot<AppState>({book: BookReducer}),
+    EffectsModule.forRoot([BookEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

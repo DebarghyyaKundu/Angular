@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { Book } from "../model/book";
-import { AddBook, RemoveBook } from "./book.actions";
+import { AddBook, AddBookFailure, AddBookSuccess, RemoveBook } from "./book.actions";
 
 
 /**
@@ -14,6 +14,14 @@ export const initialState: Book[] = [];
 
 export const BookReducer = createReducer(
     initialState,
-    on(AddBook, (state, {id, title, author}) => [...state, {id, title, author}]),
+    // When AddBook action is dispatched, it should not update the state. Internally the service should be called which would then
+    // run the backend to make changes to DB and based on DB response of either success or failure,
+    // AddBookSuccess or AddBookFailure action should be dispatched.
+    on(AddBook, (state) => {return state;}),
+    on(AddBookSuccess, (state, {id, title, author}) => [...state, {id, title, author}]),
+    on(AddBookFailure, (state, {error}) => {
+        console.error("Add book failed:", error);
+        return state;
+    }),
     on(RemoveBook, (state, {bookId}) => state.filter(book => book.id !== bookId))
 );
