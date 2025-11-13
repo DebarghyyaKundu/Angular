@@ -1,0 +1,46 @@
+Ngrx state management lifecycle:
+
+SELECTOR   <----   STORE            DATABASE
+
+                      ^                ^
+                      |                |
+|                    
+|                   REDUCER         SERVICE
+|
+V                     ^                ^
+                      |                |
+
+COMPONENT   ---->    ACTION   <--->   EFFECTS
+
+
+Store: 
+Holds the application state (immutable - cannot be changed directly). It can only be changed by using reducers (functions) which change
+the state value.
+
+Actions:
+Events that modify the state in the store.
+For eg: When the service calls the DB to fetch data, an event/action - "Data fetched successfully" can be triggered.
+This action can is used to trigger the call of the respective reducer to update the state value.
+
+Reducers: 
+Functions that take actions and modify the state, based on the action type.
+
+Effects:
+Handles async operations (like fetching data from a server) and then triggers new actions.
+For eg: Triggers the action "Data fetched successfully" when the data is fetched from DB successfully.
+
+
+This state management lifecycle has 2 flows:
+
+Flow 1: 
+1. 'Action' is dispatched from 'Component'.
+2. This action is then processed by the 'Reducer'.
+3. This reducer will then update the state in the 'Store' as per the action.
+4. This changed data state can now be selected by the 'Selector' to update the actual 'Component'
+
+Flow 2 (In case async operation is executed to load data via DB):
+1. Action is dispatched to load data which is passed to effects.
+2. Data is loaded via this action from the DB and another action is dispatched via the 'Effects'.
+3. The new action (eg. data loaded successfully) is processed by the 'Reducer'.
+4. This reducer will then update the state in the 'Store' as per the action.
+5. This changed data state can now be selected by the 'Selector' to update the actual 'Component'
